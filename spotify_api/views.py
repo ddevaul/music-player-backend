@@ -126,7 +126,7 @@ class SongDetail(generics.RetrieveUpdateDestroyAPIView, AdminWriteOrReadOnly):
 class SongByName(generics.RetrieveAPIView, AdminWriteOrReadOnly):
     def get_object(self, songname):
         try:
-            return Song.objects.filter(name=songname)
+            return Song.objects.filter(name__icontains=songname)
         except Song.DoesNotExist:
             raise Http404
 
